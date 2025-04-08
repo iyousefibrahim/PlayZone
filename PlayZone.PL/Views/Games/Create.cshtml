@@ -38,16 +38,18 @@
 				<span asp-validation-for="Description" class="alert text-danger"></span>
 			</div>
 
-			<div>
+			<div class="form-group">
 				<label asp-for="Cover" class="form-label mt-4">Image Cover</label>
-				<input asp-for="Cover" class="form-control" type="file">
-				<span asp-validation-for="Name" class="alert text-danger"></span>
+				<input asp-for="Cover" class="form-control" type="file" data-rule-extension="jpg,png,jpeg" data-msg-extension="Not allowed extension">
+				<span asp-validation-for="Cover" class="text-danger d-block"></span>
 				<small id="emailHelp" class="form-text text-muted">Only .jpg - .jpeg - .png files are allowed with max size 1MB.</small>
 			</div>
 
 		</div>
 
-		<div class="col-md-6"></div>
+		<div class="col-md-6">
+			<img src="@Model.Cover" />
+		</div>
 
 
 	</div>
@@ -56,3 +58,8 @@
 		<button type="submit" class="btn btn-success" fdprocessedid="h414l">Create</button>
 	</a>
 </form>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial" />
+	<script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+}
