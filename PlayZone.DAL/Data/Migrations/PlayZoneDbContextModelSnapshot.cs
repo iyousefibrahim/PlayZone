@@ -35,7 +35,7 @@ namespace PlayZone.DAL.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -102,7 +102,7 @@ namespace PlayZone.DAL.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Devices");
+                    b.ToTable("Devices", (string)null);
 
                     b.HasData(
                         new
@@ -157,7 +157,7 @@ namespace PlayZone.DAL.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Games");
+                    b.ToTable("Games", (string)null);
                 });
 
             modelBuilder.Entity("PlayZone.DAL.Models.GameDevice", b =>
@@ -172,7 +172,7 @@ namespace PlayZone.DAL.Data.Migrations
 
                     b.HasIndex("DeviceId");
 
-                    b.ToTable("GameDevices");
+                    b.ToTable("GameDevices", (string)null);
                 });
 
             modelBuilder.Entity("PlayZone.DAL.Models.Game", b =>

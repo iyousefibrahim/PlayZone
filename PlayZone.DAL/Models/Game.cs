@@ -13,6 +13,6 @@ namespace PlayZone.DAL.Models
         public string Cover { get; set; }
         public Guid CategoryId { get; set; }
         public Category Category { get; set; }
-        public ICollection<GameDevice> Device { get; set; }
+        public ICollection<GameDevice> Device { get; set; } = new List<GameDevice>();
     }
 }

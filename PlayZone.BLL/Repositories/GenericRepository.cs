@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PlayZone.BLL.Interfaces;
 using PlayZone.DAL.Data.Contexts;
+using PlayZone.DAL.Models;
 
 namespace PlayZone.BLL.Repositories
 {
@@ -19,7 +20,15 @@ namespace PlayZone.BLL.Repositories
         }
         public async Task<ICollection<T>> GetAllAsync()
         {
-            return await _dbContext.Set<T>().ToListAsync();
+            if (typeof(T) == typeof(Game))
+            {
+                return (ICollection<T>) await _dbContext.Games
+                    .Include(G=> G.Category)
+                    .Include(g => g.Device)
+                    .ThenInclude(gd => gd.Device)
+                    .ToListAsync();
+            }
+            return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(Guid id)
