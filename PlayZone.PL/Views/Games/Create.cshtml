@@ -1,0 +1,58 @@
+﻿@model CreateGameFormViewModel
+@{
+	ViewData["Title"] = "Create Games";
+}
+
+<h3 class="mt-5">Add a New Game <i class="bi bi-plus-circle-dotted mx-1"></i></h3>
+
+<form asp-action="Create" enctype="multipart/form-data">
+	<div class="row my-4">
+
+		<div class="col-md-6">
+
+			<div class="form-group">
+				<label asp-for="Name" class="form-label mt-4">Name</label>
+				<input asp-for="Name" type="text" class="form-control" placeholder="Name" fdprocessedid="q2fxu">
+				<span asp-validation-for="Name" class="alert text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="CategoryId" class="form-label mt-4">Category</label>
+				<select asp-for="CategoryId" asp-items="@Model.Categories" class="form-select" fdprocessedid="do6tzz">
+					<option value="">Select Category</option>
+				</select>
+				<span asp-validation-for="CategoryId" class="alert text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="SelectedDevices" class="form-label mt-4">Supported Devices</label>
+				<select asp-for="SelectedDevices" asp-items="@Model.Devices" class="form-select" fdprocessedid="do6tzz">
+					<option>Select Devices</option>
+				</select>
+				<span asp-validation-for="SelectedDevices" class="alert text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Description" class="form-label mt-4">Description</label>
+				<textarea asp-for="Description" placeholder="Description" class="form-control" rows="3"></textarea>
+				<span asp-validation-for="Description" class="alert text-danger"></span>
+			</div>
+
+			<div>
+				<label asp-for="Cover" class="form-label mt-4">Image Cover</label>
+				<input asp-for="Cover" class="form-control" type="file">
+				<span asp-validation-for="Name" class="alert text-danger"></span>
+				<small id="emailHelp" class="form-text text-muted">Only .jpg - .jpeg - .png files are allowed with max size 1MB.</small>
+			</div>
+
+		</div>
+
+		<div class="col-md-6"></div>
+
+
+	</div>
+
+	<a>
+		<button type="submit" class="btn btn-success" fdprocessedid="h414l">Create</button>
+	</a>
+</form>
