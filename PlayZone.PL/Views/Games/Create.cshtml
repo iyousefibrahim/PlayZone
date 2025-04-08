@@ -47,8 +47,8 @@
 
 		</div>
 
-		<div class="col-md-6">
-			<img src="@Model.Cover" />
+		<div class="col-md-6 d-flex justify-content-center overflow-hidden">
+			<img class="h-50 cover-preview d-none my-5" alt="Image Cover" />
 		</div>
 
 
@@ -61,5 +61,8 @@
 
 @section Scripts{
 	<partial name="_ValidationScriptsPartial" />
-	<script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+	<script src="~/lib/jquery-validation/dist/additional-methods.min.js" asp-append-version="true"></script>
+	<script src="~/js/filesize-validator.js" asp-append-version="true"></script>
+	<script src="~/js/game-form.js"></script>
+
 }
