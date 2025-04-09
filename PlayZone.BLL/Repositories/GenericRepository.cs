@@ -33,6 +33,17 @@ namespace PlayZone.BLL.Repositories
 
         public async Task<T> GetByIdAsync(Guid id)
         {
+            if (typeof(T) == typeof(Game))
+            {
+                var game = await _dbContext.Games
+                    .Include(g => g.Category)
+                    .Include(g => g.Device)
+                        .ThenInclude(gd => gd.Device)
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(g => g.Id == id);
+
+                return game as T;
+            }
             return await _dbContext.Set<T>().FindAsync(id);
         }
         public async Task CreateAsync(T entity)

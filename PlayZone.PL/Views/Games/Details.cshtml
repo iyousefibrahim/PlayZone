@@ -1,0 +1,38 @@
+﻿@using PlayZone.DAL.Models
+@model Game
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1 class="my-5">Game Details</h1>
+
+<div class="row">
+    <div class="col-md-5">
+        <img src="~/assets/images/games/@Model.Cover"
+             class="img-fluid rounded shadow"
+             alt="@Model.Name Cover"
+             style="object-fit: cover; width: 100%; height: 400px;" />
+    </div>
+
+    <div class="col-md-7">
+        <h2 class="mb-3">@Model.Name</h2>
+
+        <p><strong>Description:</strong></p>
+        <p class="text-muted">@Model.Description</p>
+
+        <p><strong>Category:</strong> <span class="badge bg-dark">@Model.Category?.Name</span></p>
+
+        <p><strong>Devices:</strong></p>
+        <div>
+            @foreach (var gd in Model.Device)
+            {
+                <span class="me-2">
+                    <i class="@gd.Device.Icon fs-4"></i> @gd.Device.Name
+                </span>
+            }
+        </div>
+
+        <a asp-action="Index" class="btn btn-secondary mt-4">← Back to Games</a>
+    </div>
+</div>
