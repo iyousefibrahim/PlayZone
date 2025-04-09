@@ -218,6 +218,23 @@ namespace PlayZone.PL.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var game = await _unitOfWork.GameRepository.GetByIdAsync(id);
+            if (game == null)
+                return NotFound();
+
+            // Delete the cover image if it exists and is not the default image
+            if (!string.IsNullOrEmpty(game.Cover))
+            {
+                DeleteOldImage(game.Cover, "assets/images/games");
+            }
+
+            _unitOfWork.GameRepository.DeleteAsync(id);
+            await _unitOfWork.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
         private void DeleteOldImage(string fileName, string folderPath)
         {
             try
