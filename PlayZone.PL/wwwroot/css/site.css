@@ -1,6 +1,9 @@
 html {
   font-size: 14px;
 }
+* {
+    text-decoration: none !important;
+}
 
 body {
     font-family: "Chakra Petch", sans-serif;

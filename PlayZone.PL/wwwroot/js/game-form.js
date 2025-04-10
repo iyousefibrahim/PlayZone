@@ -1,15 +1,19 @@
-﻿javascript// Add this to your game-form.js file
-$(document).ready(function () {
-    // Image preview functionality
-    $('input[type="file"]').change(function () {
-        const file = this.files[0];
+﻿document.addEventListener('DOMContentLoaded', function () {
+    const fileInput = document.querySelector('input[type="file"]');
+    const previewImg = document.querySelector('.cover-preview');
+
+    if (!fileInput || !previewImg) {
+        return;
+    }
+
+    fileInput.addEventListener('change', function (e) {
+        const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function (e) {
-                // Update the image preview
-                $('.cover-preview').attr('src', e.target.result);
-                $('.cover-preview').removeClass('d-none');
-            }
+            reader.onload = function (event) {
+                previewImg.src = event.target.result;
+                previewImg.classList.remove('d-none');
+            };
             reader.readAsDataURL(file);
         }
     });
